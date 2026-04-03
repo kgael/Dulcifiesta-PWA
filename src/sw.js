@@ -1,7 +1,10 @@
 /* eslint-disable no-restricted-globals */
 
-// IMPORTANT: Workbox inject manifest placeholder (must be present)
-self.__WB_MANIFEST
+// Workbox will replace this array with the precache manifest
+const precacheManifest = self.__WB_MANIFEST
+
+// (Opcional) aquí podrías usar precacheManifest si quieres, no es obligatorio.
+// Lo importante es que exista el placeholder en una asignación.
 
 self.addEventListener('push', (event) => {
   let data = { title: 'Dulcifiesta', message: 'Tienes una notificación 🍬' }
