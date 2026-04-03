@@ -1,10 +1,15 @@
+/* eslint-disable no-restricted-globals */
+
+// Workbox inject manifest placeholder (OBLIGATORIO)
+self.__WB_MANIFEST
+
 self.addEventListener('push', (event) => {
   let data = { title: 'Dulcifiesta', message: 'Tienes una notificación 🍬' }
 
   try {
     if (event.data) data = event.data.json()
   } catch {
-    // si no viene en JSON, dejamos defaults
+    // ignore
   }
 
   const title = data.title || 'Dulcifiesta'

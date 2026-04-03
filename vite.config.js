@@ -8,14 +8,12 @@ export default defineConfig({
     react(),
     tailwindcss(),
     VitePWA({
-      strategies: 'injectManifest',
+  strategies: 'injectManifest',
   srcDir: 'src',
   filename: 'sw.js',
-      registerType: "autoUpdate",
-      devOptions: {
-        enabled: false, // para probar PWA en dev
-      },
-      manifest: {
+  registerType: 'autoUpdate',
+  devOptions: { enabled: false },
+  manifest: { 
         name: "Dulcifiesta",
         short_name: "Dulcifiesta",
         description: "PWA para catálogo e inventario de una dulcería",
