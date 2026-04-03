@@ -9,20 +9,15 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
   strategies: 'injectManifest',
-  srcDir: 'src',
-  filename: 'sw.js', // output en dist/sw.js
-
   injectManifest: {
-    swSrc: 'src/sw.js', // input (tu archivo)
+    swSrc: 'src/sw.js',
   },
-
+  filename: 'sw.js',
   registerType: 'autoUpdate',
   devOptions: { enabled: false },
-
   manifest: {
     name: 'Dulcifiesta',
     short_name: 'Dulcifiesta',
-    description: 'PWA para catálogo e inventario de una dulcería',
     theme_color: '#ec4899',
     background_color: '#ffffff',
     display: 'standalone',
@@ -34,20 +29,6 @@ export default defineConfig({
       { src: '/pwa-512.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
     ],
   },
-      workbox: {
-        navigateFallback: '/index.html',
-        runtimeCaching: [
-          {
-            urlPattern: ({ url }) => url.pathname.startsWith('/api/'),
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'api-cache',
-              networkTimeoutSeconds: 3,
-              expiration: { maxEntries: 50, maxAgeSeconds: 60 * 5 },
-            },
-          },
-        ],
-      },
-    }),
+}),
   ],
 })
