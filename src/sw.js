@@ -1,10 +1,9 @@
 /* eslint-disable no-restricted-globals */
 
-// Workbox will replace this array with the precache manifest
-const precacheManifest = self.__WB_MANIFEST
+import { precacheAndRoute } from 'workbox-precaching'
 
-// (Opcional) aquí podrías usar precacheManifest si quieres, no es obligatorio.
-// Lo importante es que exista el placeholder en una asignación.
+// 🔥 ESTA LÍNEA ES LA CLAVE
+precacheAndRoute(self.__WB_MANIFEST)
 
 self.addEventListener('push', (event) => {
   let data = { title: 'Dulcifiesta', message: 'Tienes una notificación 🍬' }
