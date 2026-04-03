@@ -14,19 +14,18 @@ dotenv.config()
 const app = express()
 const PORT = process.env.PORT || 4000
 const allowedOrigins = [
-  process.env.FRONTEND_URL || 'http://localhost:5173',
-  'http://localhost:4173', // vite preview
-]
+  process.env.FRONTEND_URL,          // Netlify prod
+  process.env.FRONTEND_PREVIEW_URL,  // Netlify preview (opcional)
+  'http://localhost:5173',
+  'http://localhost:4173',
+].filter(Boolean)
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // origin undefined = requests tipo Postman/curl o mismo host
-      if (!origin) return callback(null, true)
-
-      if (allowedOrigins.includes(origin)) return callback(null, true)
-
-      return callback(new Error(`CORS blocked for origin: ${origin}`))
+    origin: (origin, cb) => {
+      if (!origin) return cb(null, true)
+      if (allowedOrigins.includes(origin)) return cb(null, true)
+      return cb(new Error(`CORS blocked for origin: ${origin}`))
     },
   }),
 )
